@@ -14,14 +14,62 @@ Company.destroy_all
 # 1a. check out the schema file
 # 1b. check out the model file
 
+puts "There are #{Company.all.count} companies in the list"
+
 # 2. insert new rows in companies table
+
+new_company = Company.new
+
+puts new_company.inspect
+new_company["name"]="Apple"
+new_company["city"]="Cupertino"
+new_company["state"]="California"
+new_company["url"]="https://www.apple.com"
+new_company.save
+
+puts new_company.inspect
+
+puts "There are #{Company.all.count} companies in the list"
+
+company2 = Company.new
+company2["name"]="Amazon"
+company2["city"]="Seattle"
+company2["state"]="Washington"
+company2.save
+
+puts company2.inspect
+puts "There are #{Company.all.count} companies in the list"
+
+company3 = Company.new
+company3["name"]="Twitter"
+company3["city"]="San Francisco"
+company3["state"]="California"
+company3["url"]="https://www.apple.com"
+company3.save
+
+puts company3.inspect
+
+puts "There are #{Company.all.count} companies in the list"
 
 # 3. query companies table to find all row with California company
 
+cali_companies = Company.where("state"=>"California")
+puts cali_companies.inspect
+
 # 4. query companies table to find single row for Apple
+
+apple = Company.find_by({"name"=>"Apple"})
+puts apple.inspect
 
 # 5. read a row's column value
 
+puts apple["url"]
+
 # 6. update a row's column value
+
+amazon = Company.find_by({"name"=> "Amazon"})
+puts amazon["url"]
+amazon["url"]="https://amazon.com"
+amazon.save
 
 # 7. delete a row
